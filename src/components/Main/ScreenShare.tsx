@@ -15,53 +15,53 @@ const ScreenShare: React.FC<ScreenShareProps> = ({
   const [isAIActive, setIsAIActive] = useState(false);
 
   return (
-    <Card className="flex-1 bg-gradient-to-br from-gray-900 to-gray-800 border-purple-500/20">
-      <CardContent className="p-8 h-full flex flex-col">
+    <div className="h-full bg-white border border-gray-200 rounded-lg">
+      <div className="p-6 h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-3">
             <div
-              className={`w-3 h-3 rounded-full ${isSharing ? "bg-green-400 animate-pulse" : "bg-gray-500"}`}
+              className={`w-2 h-2 rounded-full ${isSharing ? "bg-green-500" : "bg-gray-400"}`}
             />
-            <span className="text-white font-medium">
+            <span className="text-gray-700 font-medium text-sm">
               {isSharing ? "Экран демонстрируется" : "Готов к демонстрации"}
             </span>
           </div>
           <div className="flex items-center space-x-2">
-            <Button
-              variant={isAIActive ? "default" : "outline"}
-              size="sm"
+            <button
               onClick={() => setIsAIActive(!isAIActive)}
-              className="text-xs"
+              className={`px-3 py-1 text-xs font-medium rounded ${
+                isAIActive
+                  ? "bg-black text-white"
+                  : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+              } transition-colors`}
             >
-              <Icon name="Brain" size={16} />
               AI-Помощник
-            </Button>
-            <Button
-              variant={isSharing ? "destructive" : "default"}
+            </button>
+            <button
               onClick={onToggleShare}
-              className="bg-purple-600 hover:bg-purple-700"
+              className={`px-4 py-2 text-sm font-medium rounded transition-colors ${
+                isSharing
+                  ? "bg-red-600 text-white hover:bg-red-700"
+                  : "bg-black text-white hover:bg-gray-800"
+              }`}
             >
-              <Icon
-                name={isSharing ? "ScreenShareOff" : "ScreenShare"}
-                size={16}
-              />
               {isSharing ? "Остановить" : "Поделиться экраном"}
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Main Screen Area */}
-        <div className="flex-1 bg-gray-800/50 rounded-lg border-2 border-dashed border-gray-600 flex items-center justify-center relative">
+        <div className="flex-1 bg-gray-50 rounded border-2 border-dashed border-gray-300 flex items-center justify-center relative">
           {isSharing ? (
             <div className="text-center">
-              <div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                <Icon name="Monitor" size={32} className="text-white" />
+              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                <Icon name="Monitor" size={24} className="text-white" />
               </div>
-              <h3 className="text-white text-xl font-semibold mb-2">
+              <h3 className="text-gray-900 text-lg font-medium mb-2">
                 Экран демонстрируется
               </h3>
-              <p className="text-gray-400">
+              <p className="text-gray-600 text-sm">
                 Участники видят ваш экран в реальном времени
               </p>
             </div>
@@ -69,26 +69,28 @@ const ScreenShare: React.FC<ScreenShareProps> = ({
             <div className="text-center">
               <Icon
                 name="Monitor"
-                size={64}
-                className="text-gray-500 mx-auto mb-4"
+                size={48}
+                className="text-gray-400 mx-auto mb-4"
               />
-              <h3 className="text-gray-300 text-lg font-medium mb-2">
+              <h3 className="text-gray-700 text-base font-medium mb-2">
                 Нажмите "Поделиться экраном"
               </h3>
-              <p className="text-gray-500">чтобы начать совместную работу</p>
+              <p className="text-gray-500 text-sm">
+                чтобы начать совместную работу
+              </p>
             </div>
           )}
 
           {/* AI Assistant Overlay */}
           {isAIActive && (
-            <div className="absolute top-4 right-4 bg-purple-600 rounded-lg p-3 text-white max-w-xs">
+            <div className="absolute top-4 right-4 bg-black rounded p-4 text-white max-w-xs">
               <div className="flex items-center space-x-2 mb-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <div className="w-2 h-2 bg-green-400 rounded-full" />
                 <span className="text-sm font-medium">
                   AI-Ассистент активен
                 </span>
               </div>
-              <p className="text-xs text-purple-100">
+              <p className="text-xs text-gray-300">
                 Готов помочь с анализом экрана и предложить улучшения
               </p>
             </div>
@@ -97,42 +99,25 @@ const ScreenShare: React.FC<ScreenShareProps> = ({
 
         {/* Controls */}
         <div className="mt-6 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-400 hover:text-white"
-            >
-              <Icon name="Settings" size={16} />
+          <div className="flex items-center space-x-6">
+            <button className="text-gray-500 hover:text-gray-700 text-sm font-medium transition-colors">
               Настройки качества
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-400 hover:text-white"
-            >
-              <Icon name="Users" size={16} />3 участника
-            </Button>
+            </button>
+            <button className="text-gray-500 hover:text-gray-700 text-sm font-medium transition-colors">
+              3 участника
+            </button>
           </div>
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-400 hover:text-white"
-            >
-              <Icon name="Mic" size={16} />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-400 hover:text-white"
-            >
-              <Icon name="Video" size={16} />
-            </Button>
+          <div className="flex items-center space-x-4">
+            <button className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors">
+              <Icon name="Mic" size={16} className="text-gray-600" />
+            </button>
+            <button className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center transition-colors">
+              <Icon name="Video" size={16} className="text-gray-600" />
+            </button>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

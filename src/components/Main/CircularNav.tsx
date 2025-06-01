@@ -68,12 +68,10 @@ const CircularNav: React.FC<CircularNavProps> = ({
   };
 
   return (
-    <div className="relative w-80 h-80 flex items-center justify-center z-10">
+    <div className="relative w-80 h-80 flex items-center justify-center">
       {/* Central Hub */}
-      <div className="absolute w-24 h-24 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full shadow-lg flex items-center justify-center z-10">
-        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
-          <Icon name="Zap" size={24} className="text-white" />
-        </div>
+      <div className="absolute w-16 h-16 bg-black rounded-full shadow-sm flex items-center justify-center">
+        <Icon name="Zap" size={20} className="text-white" />
       </div>
 
       {/* Studios */}
@@ -90,47 +88,39 @@ const CircularNav: React.FC<CircularNavProps> = ({
               transform: `translate(${position.x}px, ${position.y}px)`,
             }}
           >
-            <Button
-              variant="ghost"
-              className={`w-20 h-20 rounded-full p-0 transition-all duration-300 ${
-                isActive || isHovered
-                  ? "scale-110 shadow-xl"
-                  : "scale-100 hover:scale-105"
+            <button
+              className={`w-14 h-14 rounded-full transition-all duration-200 ${
+                isActive
+                  ? "bg-black shadow-md scale-110"
+                  : isHovered
+                    ? "bg-gray-800 scale-105"
+                    : "bg-gray-200 hover:bg-gray-300"
               }`}
               onClick={() => onStudioSelect(studio.id)}
               onMouseEnter={() => setHoveredStudio(studio.id)}
               onMouseLeave={() => setHoveredStudio(null)}
             >
-              <div
-                className={`w-full h-full bg-gradient-to-br ${studio.color} rounded-full flex items-center justify-center relative overflow-hidden`}
-              >
-                {/* Glow effect */}
-                {(isActive || isHovered) && (
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${studio.color} opacity-30 blur-sm scale-110`}
-                  />
-                )}
+              <Icon
+                name={studio.icon as any}
+                size={20}
+                className={
+                  isActive || isHovered ? "text-white" : "text-gray-600"
+                }
+              />
 
-                <Icon
-                  name={studio.icon as any}
-                  size={24}
-                  className="text-white relative z-10"
-                />
-
-                {/* Active indicator */}
-                {isActive && (
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse" />
-                )}
-              </div>
-            </Button>
+              {/* Active indicator */}
+              {isActive && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
+              )}
+            </button>
 
             {/* Studio label */}
             {(isHovered || isActive) && (
-              <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 text-center animate-fade-in z-20">
-                <p className="text-white text-sm font-medium whitespace-nowrap">
+              <div className="absolute top-full mt-3 left-1/2 transform -translate-x-1/2 text-center">
+                <p className="text-gray-900 text-sm font-medium whitespace-nowrap">
                   {studio.name}
                 </p>
-                <p className="text-gray-400 text-xs whitespace-nowrap">
+                <p className="text-gray-500 text-xs whitespace-nowrap">
                   {studio.description}
                 </p>
               </div>

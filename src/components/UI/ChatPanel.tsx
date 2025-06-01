@@ -60,39 +60,39 @@ const ChatPanel: React.FC = () => {
   }
 
   return (
-    <Card className="w-80 bg-gray-900/90 border-gray-700">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center justify-between text-white">
+    <div className="w-80 bg-white border border-gray-200 rounded-lg shadow-sm">
+      <div className="p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Icon name="MessageSquare" size={18} />
-            <span className="text-sm">Чат команды</span>
+            <Icon name="MessageSquare" size={16} className="text-gray-600" />
+            <span className="text-sm font-medium text-gray-900">
+              Чат команды
+            </span>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={() => setIsCollapsed(true)}
-            className="text-gray-400 hover:text-white"
+            className="text-gray-500 hover:text-gray-700 transition-colors"
           >
             <Icon name="ChevronRight" size={16} />
-          </Button>
-        </CardTitle>
-      </CardHeader>
+          </button>
+        </div>
+      </div>
 
-      <CardContent className="space-y-4">
+      <div className="p-4 space-y-4">
         {/* Online Users */}
         <div>
-          <p className="text-xs text-gray-400 mb-2">
+          <p className="text-xs text-gray-500 mb-3">
             Онлайн ({onlineUsers.length})
           </p>
           <div className="flex space-x-2">
             {onlineUsers.map((user, index) => (
               <div key={index} className="relative">
-                <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-sm">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-sm">
                   {user.avatar}
                 </div>
                 <div
-                  className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-gray-900 ${
-                    user.status === "active" ? "bg-green-400" : "bg-yellow-400"
+                  className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${
+                    user.status === "active" ? "bg-green-500" : "bg-yellow-500"
                   }`}
                 />
               </div>
@@ -104,19 +104,19 @@ const ChatPanel: React.FC = () => {
         <div className="h-48 overflow-y-auto space-y-3">
           {messages.map((msg) => (
             <div key={msg.id} className="flex space-x-2">
-              <div className="w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-xs">
+              <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center text-xs">
                 {msg.avatar}
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-1">
-                  <span className="text-xs font-medium text-gray-300">
+                  <span className="text-xs font-medium text-gray-700">
                     {msg.user}
                   </span>
                   <span className="text-xs text-gray-500">
                     {msg.timestamp.toLocaleTimeString()}
                   </span>
                 </div>
-                <p className="text-sm text-gray-200 bg-gray-800 rounded-lg px-2 py-1">
+                <p className="text-sm text-gray-900 bg-gray-50 rounded px-3 py-2">
                   {msg.message}
                 </p>
               </div>
@@ -131,14 +131,14 @@ const ChatPanel: React.FC = () => {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Написать сообщение..."
-            className="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+            className="flex-1 bg-gray-50 border border-gray-200 rounded px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-400"
           />
-          <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
-            <Icon name="Send" size={16} />
-          </Button>
+          <button className="px-3 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors">
+            <Icon name="Send" size={14} />
+          </button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

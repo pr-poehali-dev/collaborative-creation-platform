@@ -23,20 +23,18 @@ const Toolbar: React.FC<ToolbarProps> = ({
   ];
 
   return (
-    <div className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg p-2">
+    <div className="bg-white border border-gray-200 rounded-lg p-2">
       <div className="flex items-center space-x-1">
         {toolbarItems.map((item, index) => (
-          <Button
+          <button
             key={index}
-            variant="ghost"
-            size="sm"
             onClick={item.onClick}
-            className="text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+            className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors rounded text-sm font-medium"
             title={item.label}
           >
             <Icon name={item.icon as any} size={16} />
-            <span className="ml-1 text-xs hidden md:inline">{item.label}</span>
-          </Button>
+            <span className="ml-2 hidden md:inline">{item.label}</span>
+          </button>
         ))}
       </div>
     </div>
