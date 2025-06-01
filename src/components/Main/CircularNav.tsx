@@ -68,7 +68,7 @@ const CircularNav: React.FC<CircularNavProps> = ({
   };
 
   return (
-    <div className="relative w-80 h-80 flex items-center justify-center">
+    <div className="relative w-80 h-80 flex items-center justify-center z-10">
       {/* Central Hub */}
       <div className="absolute w-24 h-24 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-full shadow-lg flex items-center justify-center z-10">
         <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
@@ -126,7 +126,7 @@ const CircularNav: React.FC<CircularNavProps> = ({
 
             {/* Studio label */}
             {(isHovered || isActive) && (
-              <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 text-center animate-fade-in">
+              <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 text-center animate-fade-in z-20">
                 <p className="text-white text-sm font-medium whitespace-nowrap">
                   {studio.name}
                 </p>

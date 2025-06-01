@@ -22,7 +22,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
       {/* Header */}
-      <header className="bg-gray-900/50 backdrop-blur-sm border-b border-gray-700">
+      <header className="bg-gray-900/50 backdrop-blur-sm border-b border-gray-700 relative z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -32,14 +32,14 @@ const Index = () => {
               <h1 className="text-2xl font-bold text-white">CreativeHub</h1>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <Button className="bg-purple-600 hover:bg-purple-700">
+            <div className="flex items-center space-x-4 relative z-10">
+              <Button className="bg-purple-600 hover:bg-purple-700 relative z-10">
                 <Icon name="Plus" size={16} />
                 Создать проект
               </Button>
               <Button
                 variant="outline"
-                className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
+                className="border-purple-500 text-purple-400 hover:bg-purple-500/10 relative z-10"
               >
                 <Icon name="UserPlus" size={16} />
                 Создать персонажа
@@ -61,7 +61,7 @@ const Index = () => {
           </div>
 
           {/* Center Panel - Circular Navigation */}
-          <div className="col-span-3 flex flex-col items-center justify-center">
+          <div className="col-span-3 flex flex-col items-center justify-center relative z-10">
             <CircularNav
               onStudioSelect={handleStudioSelect}
               activeStudio={activeStudio}
